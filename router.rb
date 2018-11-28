@@ -23,6 +23,8 @@ class Router
 		puts "1 - List recipes"
 		puts "2 - Add a new recipe"
 		puts "3 - Delete a recipe"
+		puts "4 - Import recipes from LetsCookFrench"
+		puts "5 - Exit"
 		puts "---"
 	end
 
@@ -31,8 +33,10 @@ class Router
 		when 1 then @controller.list
 		when 2 then @controller.create
 		when 3 then @controller.destroy
+		when 4 then @controller.import
+		when 5 then @controller.exit
 		else
-			puts "Wrong action, please type 1, 2 or 3 !"
+			puts "Wrong action, please type 1, 2, 3, 4 or 5 !"
 		end
 	end
 end

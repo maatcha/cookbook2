@@ -7,8 +7,18 @@ class View
 				puts "#{row["index"]} : #{row["name"]} ; #{row["description"]}"
 				puts "---------------------------------------------------------------------"
 			end
-	end	
+	end
 
+	def display_five_recipes(recipes, recipes_details)
+		recipes[0..4].each_with_index do |recipe, index|
+			print "#{index + 1} - " + recipe.text + " : "
+			recipes_details[0..4].each_with_index do |recipe_detail, details_index|
+				if index == details_index
+					puts recipe_detail.text.strip
+				end
+			end
+		end
+	end
 
 	def ask_user_for_name
 		puts "Which name for your recipe ?"
@@ -23,5 +33,22 @@ class View
 	def ask_user_for_index
 		puts "Index?"
 		gets.chomp.to_i
+	end
+
+	def ask_user_for_recipe_index
+		puts ""
+		puts "Which recipe would you like to import ? (Index)"
+		gets.chomp.to_i + 1
+	end
+
+	def ask_user_for_ingredient
+		puts "What ingredient would you like a recipe for ?"
+		ingredient = gets.chomp
+		puts ""
+		puts "Looking for #{ingredient} on LetsCookFrench..."
+		puts ""
+	end
+
+	def say_goodbye
 	end
 end
