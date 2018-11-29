@@ -1,3 +1,4 @@
+require "pry"
 require "nokogiri"
 
 file = "strawberry.html"
@@ -13,11 +14,15 @@ recipes_details = doc.xpath("//div[@class='m_detail_recette']")
 # 		end
 # 	end
 # end
+
+binding.pry
+
+
 def import_chosen_recipe(index = 1, recipes)
 	recipes[0..4].each_with_index do |recipe, recipe_index|
 		recipe.text
 		if recipe_index == index
-		p recipes[recipe_index].text.class
+		p recipes[recipe_index].text
 		# if recipe_index == index
 		# 	puts recipe.text
 		end

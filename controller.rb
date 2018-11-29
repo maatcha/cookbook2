@@ -1,6 +1,5 @@
 require_relative "recipe"
 require_relative "view"
-require "pry"
 
 class Controller
 	
@@ -34,8 +33,8 @@ class Controller
 		index = @view.ask_user_for_recipe_index
 		chosen_recipe = @repository.import_chosen_recipe(index, recipes)
 		chosen_recipe_details = @repository.import_chosen_recipe_details(index, recipes_details)
-		recipe = Recipe.new(chosen_recipe, chosen_recipe_details)
-		@repository.add_recipe(recipe)
+		recipe1 = Recipe.new(chosen_recipe, chosen_recipe_details)
+		@repository.add_recipe(recipe1)
 	end
 
 	def exit
