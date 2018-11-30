@@ -1,3 +1,4 @@
+require_relative "parsing_class_objects"
 require_relative "recipe"
 require_relative "view"
 require "pry"
@@ -23,14 +24,11 @@ class Controller
 
 	def import
 		ingredient = @view.ask_user_for_ingredient
-		recipes = @repository.search_for_five_recipes(ingredient)
-		recipes_details = @repository.search_for_five_descriptions(ingredient)
-		recipes_prep_times = @repository.search_for_five_prep_times(ingredient)
-		@view.display_five_recipes(recipes, recipes_details, recipes_prep_times)
+		@view.display_five_recipes(SearchForFiveRecipes.call(ingredient), SearchForFiveDescriptions.call(ingredient), SearchForFivePrepTimes.call(ingredient))
 		index = @view.ask_user_for_recipe_index
-		chosen_recipe = @repository.import_chosen_recipe(index, recipes)
-		chosen_recipe_details = @repository.import_chosen_recipe_details(index, recipes_details)
-		chosen_recipe_prep_time = @repository.import_chosen_recipe_prep_time(index, recipes_prep_times)
+		chosen_recipe = ImportChosenRecipe.call(index, SearchForFiveRecipes.call(ingredient))
+		chosen_recipe_details = ImportChosenRecipeDetails.call(index, SearchForFiveDescriptions.call(ingredient))
+		chosen_recipe_prep_time = ImportChosenRecipePrepTime.call(index, SearchForFivePrepTimes.call(ingredient))
 		recipe = Recipe.new(chosen_recipe, chosen_recipe_details, chosen_recipe_prep_time)
 		@repository.add_recipe(recipe)
 	end
@@ -38,7 +36,7 @@ class Controller
 	def mark_a_recipe_as_done
 		@view.display
 		index = @view.ask_user_for_which_recipe_he_has_already_made
-		@repository.mark_a_recipe_as_done(index)
+		@repository.mark_as_done(index)
 	end
 	
 	def destroy

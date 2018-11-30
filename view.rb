@@ -1,11 +1,11 @@
 class View
 	
 	def display
-		puts "ID: NAME------------------------------;-DESCRIPTION------------------------------==> PREPARATION TIME"
+		puts "ID: (DONE ?)--NAME------------------------------;----DESCRIPTION----------------==> PREPARATION TIME"
 		csv_options = { col_sep: ",", force_quotes: false, headers: :first_row, quote_char: "|" }
 			CSV.foreach("data.csv", csv_options) do |row|
-				puts "#{row["index"]} : #{row["name"]} ; #{row["description"]} ==> #{row["preparation_time"]}"
-				puts "-----------------------------------------------------------------------------------------------------"
+				puts "#{row["index"]} : [#{row["done"]}] #{row["name"]} ; #{row["description"]} ==> #{row["preparation_time"]}"
+				puts "----------------------------------------------------------------------------------------------------------"
 			end
 	end
 
@@ -24,17 +24,6 @@ class View
 			end
 		end
 	end
-	
-	# def display_five_recipes(recipes, recipes_details)
-	# 	recipes[0..4].each_with_index do |recipe, index|
-	# 		print "#{index + 1} - " + recipe.text + " : "
-	# 		recipes_details[0..4].each_with_index do |recipe_details, details_index|
-	# 			if index == details_index
-	# 				puts recipe_details.text.strip
-	# 			end
-	# 		end
-	# 	end
-	# end
 
 	def ask_user_for_name
 		puts "Which name for your recipe ?"

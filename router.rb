@@ -31,7 +31,7 @@ class Router
 		when 1 then @controller.list
 		when 2 then @controller.create
 		when 3 then @controller.import
-		when 4 then @controller.mark_a recipe_as_done
+		when 4 then @controller.mark_a_recipe_as_done
 		when 5 then @controller.destroy
 		when 6 then @controller.quit
 		else
